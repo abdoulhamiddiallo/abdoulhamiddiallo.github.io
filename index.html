@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Studio — Abdoul Hamid Diallo · Applications de données</title>
+<meta name="description" content="Le catalogue vivant des applications de données d'Abdoul Hamid Diallo : sport, énergie, finance, industrie, élections, éducation. Un seul lien, toutes les applications, mis à jour automatiquement.">
+<meta name="theme-color" content="#0b0d12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Studio AHD">
+<meta property="og:title" content="Studio — Abdoul Hamid Diallo">
+<meta property="og:description" content="Toutes mes applications de données, en un seul lien. Ouvrez-les depuis votre téléphone ou votre ordinateur.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0d12'/%3E%3Ccircle cx='22' cy='22' r='7' fill='%23f59e0b'/%3E%3Ccircle cx='42' cy='22' r='7' fill='%2322c55e'/%3E%3Ccircle cx='22' cy='42' r='7' fill='%233b82f6'/%3E%3Ccircle cx='42' cy='42' r='7' fill='%23ef4444'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0b0d12;--bg2:#10131b;--card:#141821;--card2:#191e2a;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.14);
+  --fg:#f3f4f8;--fg2:#a3a9b8;--fg3:#6b7284;--accent:#f59e0b;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;
+  --shadow:0 20px 60px -20px rgba(0,0,0,.7);--r:18px;--font:"Inter","SF Pro Display",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono","SF Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+:root[data-theme="light"]{
+  --bg:#f5f6fa;--bg2:#ffffff;--card:#ffffff;--card2:#f1f3f8;--line:rgba(15,23,42,.08);--line2:rgba(15,23,42,.16);
+  --fg:#0f172a;--fg2:#475569;--fg3:#7c869c;--shadow:0 20px 50px -24px rgba(15,23,42,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.45;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:
+  radial-gradient(900px 500px at 10% -10%,rgba(245,158,11,.14),transparent 60%),
+  radial-gradient(800px 500px at 100% 0%,rgba(59,130,246,.14),transparent 60%),
+  radial-gradient(700px 500px at 50% 110%,rgba(34,197,94,.10),transparent 60%);pointer-events:none}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+/* top bar */
+.top{position:sticky;top:0;z-index:20;backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:62px}
+.brand{text-decoration:none;display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
+.brand .logo{width:30px;height:30px;border-radius:9px;background:var(--fg);display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:6px}
+.brand .logo i{border-radius:50%;display:block}
+.brand small{display:block;font-weight:500;color:var(--fg3);font-size:11px;letter-spacing:.6px;text-transform:uppercase;margin-top:-2px}
+.search{flex:1;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:0 12px;height:40px;max-width:520px;margin-left:auto;transition:border-color .2s,box-shadow .2s}
+.search:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
+.search input{flex:1;background:none;border:0;outline:0;color:var(--fg);font:inherit;font-size:14px;min-width:0}
+.search kbd{font-family:var(--mono);font-size:11px;color:var(--fg3);border:1px solid var(--line2);border-radius:6px;padding:1px 6px}
+.iconbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;color:var(--fg2);transition:.2s}
+.iconbtn:hover{color:var(--fg);border-color:var(--line2);transform:translateY(-1px)}
+.iconbtn svg{width:18px;height:18px}
+/* hero */
+.hero{padding:clamp(34px,6vw,72px) 0 26px}
+.hero h1{font-size:clamp(34px,6.4vw,74px);line-height:.98;letter-spacing:-.035em;margin:0 0 18px;font-weight:800;max-width:14ch}
+.hero h1 em{font-style:normal;background:linear-gradient(92deg,#f59e0b,#ef4444 40%,#3b82f6 75%,#22c55e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(15px,1.6vw,19px);color:var(--fg2);max-width:62ch;margin:0 0 26px}
+.stats{display:flex;flex-wrap:wrap;gap:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;min-width:130px;flex:1 1 130px;max-width:220px}
+.stat b{display:block;font-size:26px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{font-size:12px;color:var(--fg3);text-transform:uppercase;letter-spacing:.6px}
+.live{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--fg2);margin-top:16px;font-family:var(--mono)}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pulse 2s infinite}
+.live.err i{background:var(--warn);animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+/* toolbar */
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 0 18px;position:sticky;top:62px;z-index:15;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 13px;font-size:13px;color:var(--fg2);transition:.18s;display:inline-flex;gap:6px;align-items:center}
+.chip:hover{border-color:var(--line2);color:var(--fg)}
+.chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip .n{font-family:var(--mono);font-size:11px;opacity:.7}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+.seg button{padding:7px 11px;font-size:13px;color:var(--fg2);display:inline-flex;gap:6px;align-items:center}
+.seg button.on{background:var(--card2);color:var(--fg)}
+.seg svg{width:15px;height:15px}
+select.sort{background:var(--card);border:1px solid var(--line);color:var(--fg2);border-radius:10px;padding:8px 10px;font:inherit;font-size:13px;outline:0}
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px;padding-bottom:40px}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s;animation:in .5s both}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--line2)}
+@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.card .band{height:110px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--c) 0%,color-mix(in srgb,var(--c) 55%,#000) 100%)}
+.card .band::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 85% 20%,rgba(255,255,255,.28),transparent 35%),
+  repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px 22px),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 22px);mix-blend-mode:screen}
+.card .band .glyph{position:absolute;left:18px;bottom:-22px;width:58px;height:58px;border-radius:16px;background:var(--card);border:1px solid var(--line2);display:grid;place-items:center;font-size:28px;box-shadow:0 8px 24px -8px rgba(0,0,0,.5)}
+.card .band .tag{position:absolute;right:12px;top:12px;display:flex;gap:6px}
+.pill{font-size:11px;font-weight:600;letter-spacing:.3px;padding:4px 9px;border-radius:999px;background:rgba(0,0,0,.35);color:#fff;backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18)}
+.pill.new{background:var(--ok);color:#052e16;border-color:transparent}
+.pill.lang{font-family:var(--mono);font-weight:500}
+.card .body{padding:34px 18px 14px;flex:1;display:flex;flex-direction:column;gap:6px}
+.card .cat{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--c);font-weight:700}
+.card h3{margin:0;font-size:18px;letter-spacing:-.01em;line-height:1.2}
+.card p{margin:0;font-size:13.5px;color:var(--fg2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card .meta{margin-top:auto;padding-top:10px;display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--fg3);font-family:var(--mono)}
+.card .meta span{display:inline-flex;align-items:center;gap:5px}
+.card .meta svg{width:13px;height:13px}
+.card .acts{display:flex;gap:8px;padding:0 14px 14px}
+.btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;border-radius:11px;font-size:13.5px;font-weight:600;border:1px solid var(--line);background:var(--card2);color:var(--fg);transition:.18s;text-decoration:none}
+.btn:hover{border-color:var(--line2);transform:translateY(-1px)}
+.btn.primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn.sq{flex:0 0 38px;padding:0}
+.btn svg{width:16px;height:16px}
+.card.off .band{filter:saturate(.3)}
+/* timeline */
+.tl{position:relative;padding:10px 0 40px 28px;max-width:900px}
+.tl::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(var(--line2),transparent)}
+.tl .day{position:relative;margin:0 0 26px}
+.tl .day::before{content:"";position:absolute;left:-25px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}
+.tl .day h4{margin:0 0 10px;font-size:13px;color:var(--fg3);text-transform:uppercase;letter-spacing:1px;font-family:var(--mono)}
+.row{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px;text-decoration:none;transition:.18s;animation:in .4s both}
+.row:hover{border-color:var(--line2);transform:translateX(3px)}
+.row .g{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:color-mix(in srgb,var(--c) 22%,var(--card));border:1px solid color-mix(in srgb,var(--c) 40%,transparent);flex:0 0 42px}
+.row b{display:block;font-size:15px}
+.row small{color:var(--fg2);font-size:12.5px;display:block}
+.row .r{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--fg3);white-space:nowrap}
+/* modal */
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.modal.open{display:flex}
+.sheet{background:var(--bg2);border:1px solid var(--line2);border-radius:22px;width:min(1100px,100%);height:min(92vh,900px);display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow);animation:pop .3s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:none}}
+.sheet .hd{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.sheet .hd .g{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-size:19px;background:color-mix(in srgb,var(--c) 25%,var(--card))}
+.sheet .hd b{font-size:15px;display:block}
+.sheet .hd small{color:var(--fg3);font-family:var(--mono);font-size:11.5px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sheet .hd .t{min-width:0;flex:1}
+.sheet .bd{flex:1;min-height:0;display:grid;grid-template-columns:1fr 300px}
+.frame{position:relative;background:var(--card2);display:flex;align-items:center;justify-content:center;padding:16px;min-height:420px;overflow:hidden}
+.frame .dev{background:#000;border-radius:28px;padding:10px;box-shadow:0 30px 80px -30px rgba(0,0,0,.9);transition:width .35s cubic-bezier(.2,.8,.2,1),height .35s;width:100%;height:100%;max-width:100%;max-height:100%}
+.frame .dev.phone{height:100%;width:auto;aspect-ratio:390/800;max-width:100%;border-radius:44px;padding:12px}
+.frame iframe{width:100%;height:100%;border:0;border-radius:20px;background:#fff}
+.frame .dev.phone iframe{border-radius:34px}
+.frame .ld{position:absolute;inset:0;display:grid;place-items:center;color:var(--fg3);font-family:var(--mono);font-size:12px;pointer-events:none}
+.side{border-left:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+.side p{margin:0;font-size:13.5px;color:var(--fg2)}
+.side .qr{background:#fff;border-radius:14px;padding:10px;align-self:center;width:180px;height:180px}
+.side .qr svg{width:100%;height:100%;display:block}
+.side .hint{font-size:12px;color:var(--fg3);text-align:center}
+.side .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:12.5px;font-family:var(--mono)}
+.side .kv span{color:var(--fg3)}
+.side .link{display:flex;gap:6px}
+.side .link input{flex:1;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;color:var(--fg2);font:inherit;font-size:12px;font-family:var(--mono);outline:0}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:13.5px;font-weight:600;z-index:60;transition:.25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%)}
+.empty{padding:60px 20px;text-align:center;color:var(--fg3)}
+.skel{height:330px;border-radius:var(--r);background:linear-gradient(90deg,var(--card),var(--card2),var(--card));background-size:200% 100%;animation:sh 1.3s infinite;border:1px solid var(--line)}
+@keyframes sh{to{background-position:-200% 0}}
+footer{border-top:1px solid var(--line);padding:30px 0 60px;color:var(--fg3);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+footer a{color:var(--fg2);text-decoration:none}
+footer a:hover{color:var(--fg)}
+.auto{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12px;color:var(--fg2)}
+.auto svg{width:14px;height:14px;color:var(--ok)}
+@media (max-width:860px){
+  .row .r{display:none}.stat b{font-size:21px}
+  .sheet .bd{grid-template-columns:1fr}.side{display:none}.sheet .bd.qrmode .side{display:flex;border-left:0}.sheet .bd.qrmode .frame{display:none}
+  .frame{padding:8px;min-height:60vh}.frame .dev.phone{width:100%;height:100%;aspect-ratio:auto;border-radius:22px;padding:8px}.frame .dev.phone iframe{border-radius:16px}
+  .search{max-width:none}.brand span.txt{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="./" aria-label="Studio">
+    <span class="logo"><i style="background:#f59e0b"></i><i style="background:#22c55e"></i><i style="background:#3b82f6"></i><i style="background:#ef4444"></i></span>
+    <span class="txt">Studio<small>Abdoul Hamid Diallo</small></span>
+  </a>
+  <label class="search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Rechercher une application, un thème…" autocomplete="off"><kbd>/</kbd></label>
+  <button class="iconbtn" id="share" title="Partager ce catalogue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></button>
+  <button class="iconbtn" id="theme" title="Thème clair / sombre"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A5.5 5.5 0 0 1 13.4 3.1C13 3 12.5 3 12 3z"/></svg></button>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Toutes mes applications, <em>un seul lien.</em></h1>
+    <p>Des laboratoires de données interactifs — sport, énergie, finance, industrie, élections, éducation — construits pour explorer des décennies de chiffres. Ouvrez-les depuis votre téléphone ou votre ordinateur : rien à installer.</p>
+    <div class="stats" id="stats">
+      <div class="stat"><b id="s-n">—</b><span>applications</span></div>
+      <div class="stat"><b id="s-u">—</b><span>univers</span></div>
+      <div class="stat"><b id="s-d">—</b><span>dernière publication</span></div>
+      <div class="stat"><b id="s-y">—</b><span>années de données</span></div>
+    </div>
+    <div class="live" id="live"><i></i><span>Catalogue synchronisé en direct avec GitHub</span></div>
+  </section>
+
+  <div class="bar">
+    <div class="chips" id="chips"></div>
+    <select class="sort" id="sort" aria-label="Trier">
+      <option value="recent">Plus récentes</option>
+      <option value="name">A → Z</option>
+      <option value="old">Plus anciennes</option>
+      <option value="cat">Par univers</option>
+    </select>
+    <div class="seg" id="view">
+      <button data-v="grid" class="on" title="Grille"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
+      <button data-v="tl" title="Chronologie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+  </div>
+
+  <section id="list" class="grid" aria-live="polite">
+    <div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <span class="auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg>Toute nouvelle application publiée apparaît ici automatiquement</span>
+  <span>© <span id="yr"></span> Abdoul Hamid Diallo · <a href="https://github.com/abdoulhamiddiallo" target="_blank" rel="noopener">GitHub</a></span>
+</div></footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="sheet">
+    <div class="hd">
+      <div class="g" id="m-g"></div>
+      <div class="t"><b id="m-t"></b><small id="m-u"></small></div>
+      <div class="seg" id="m-dev"><button data-d="phone" class="on" title="Vue téléphone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></button><button data-d="desk" title="Vue ordinateur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></button></div>
+      <button class="iconbtn" id="m-qr" title="QR code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v3M17 20h3M14 20h1"/></svg></button>
+      <a class="btn primary" id="m-open" target="_blank" rel="noopener" style="flex:0 0 auto;padding:0 14px">Ouvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      <button class="iconbtn" id="m-x" title="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="bd" id="m-bd">
+      <div class="frame"><div class="ld" id="m-ld">Chargement de l'application…</div><div class="dev phone" id="m-devbox"><iframe id="m-if" title="Aperçu" loading="eager"></iframe></div></div>
+      <aside class="side">
+        <p id="m-p"></p>
+        <div class="qr" id="m-qrbox"></div>
+        <div class="hint">Scannez avec l'appareil photo de votre téléphone pour ouvrir l'application.</div>
+        <div class="kv" id="m-kv"></div>
+        <div class="link"><input id="m-link" readonly><button class="btn sq" id="m-copy" title="Copier le lien"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg></button></div>
+      </aside>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+// Compact QR encoder — byte mode, EC level M, versions 1-10
+const QR = (() => {
+  const EXP = new Uint8Array(512), LOG = new Uint8Array(256);
+  for (let i = 0, x = 1; i < 255; i++) { EXP[i] = x; LOG[x] = i; x <<= 1; if (x & 256) x ^= 0x11d; }
+  for (let i = 255; i < 512; i++) EXP[i] = EXP[i - 255];
+  const mul = (a, b) => (a && b) ? EXP[LOG[a] + LOG[b]] : 0;
+  // level M: [total codewords, ec per block, blocks g1, data g1, blocks g2, data g2]
+  const T = [null,
+    [26, 10, 1, 16, 0, 0], [44, 16, 1, 28, 0, 0], [70, 26, 1, 44, 0, 0], [100, 18, 2, 32, 0, 0], [134, 24, 2, 43, 0, 0],
+    [172, 16, 4, 27, 0, 0], [196, 18, 4, 31, 0, 0], [242, 22, 2, 38, 2, 39], [292, 22, 3, 36, 2, 37], [346, 26, 4, 43, 1, 44]];
+  const ALIGN = [null, [], [6, 18], [6, 22], [6, 26], [6, 30], [6, 34], [6, 22, 38], [6, 24, 42], [6, 26, 46], [6, 28, 50]];
+  function ecc(data, n) {
+    let g = [1];
+    for (let i = 0; i < n; i++) { const ng = new Array(g.length + 1).fill(0); for (let j = 0; j < g.length; j++) { ng[j] ^= g[j]; ng[j + 1] ^= mul(g[j], EXP[i]); } g = ng; }
+    const r = new Array(n).fill(0);
+    for (const b of data) { const f = b ^ r.shift(); r.push(0); if (f) for (let j = 0; j < n; j++) r[j] ^= mul(g[j + 1], f); }
+    return r;
+  }
+  function encode(str) {
+    const bytes = Array.from(new TextEncoder().encode(str));
+    let v = 1; for (; v <= 10; v++) { const t = T[v]; const cap = t[2] * t[3] + t[4] * t[5]; if (cap - (v < 10 ? 2 : 3) >= bytes.length) break; }
+    if (v > 10) throw new Error('too long');
+    const t = T[v], dataLen = t[2] * t[3] + t[4] * t[5];
+    const bits = []; const push = (val, n) => { for (let i = n - 1; i >= 0; i--) bits.push((val >> i) & 1); };
+    push(4, 4); push(bytes.length, v < 10 ? 8 : 16); bytes.forEach(b => push(b, 8));
+    push(0, Math.min(4, dataLen * 8 - bits.length)); while (bits.length % 8) bits.push(0);
+    const cw = []; for (let i = 0; i < bits.length; i += 8) cw.push(parseInt(bits.slice(i, i + 8).join(''), 2));
+    for (let p = 0xec; cw.length < dataLen; p ^= 0xfd) cw.push(p);
+    const blocks = [], eblocks = []; let o = 0;
+    for (let b = 0; b < t[2] + t[4]; b++) { const n = b < t[2] ? t[3] : t[5]; const d = cw.slice(o, o + n); o += n; blocks.push(d); eblocks.push(ecc(d, t[1])); }
+    const out = []; const maxD = Math.max(t[3], t[5]);
+    for (let i = 0; i < maxD; i++) for (const b of blocks) if (i < b.length) out.push(b[i]);
+    for (let i = 0; i < t[1]; i++) for (const b of eblocks) out.push(b[i]);
+    // matrix
+    const N = v * 4 + 17, M = Array.from({ length: N }, () => new Int8Array(N).fill(-1));
+    const set = (r, c, val) => { M[r][c] = val ? 1 : 0; };
+    const finder = (r, c) => { for (let i = -1; i <= 7; i++) for (let j = -1; j <= 7; j++) { const rr = r + i, cc = c + j; if (rr < 0 || cc < 0 || rr >= N || cc >= N) continue; const on = (i >= 0 && i <= 6 && (j === 0 || j === 6)) || (j >= 0 && j <= 6 && (i === 0 || i === 6)) || (i >= 2 && i <= 4 && j >= 2 && j <= 4); set(rr, cc, on); } };
+    finder(0, 0); finder(0, N - 7); finder(N - 7, 0);
+    for (let i = 8; i < N - 8; i++) { set(6, i, i % 2 === 0); set(i, 6, i % 2 === 0); }
+    const al = ALIGN[v];
+    const last = al[al.length - 1];
+    for (const r of al) for (const c of al) { if ((r === 6 && c === 6) || (r === 6 && c === last) || (r === last && c === 6)) continue; for (let i = -2; i <= 2; i++) for (let j = -2; j <= 2; j++) set(r + i, c + j, Math.max(Math.abs(i), Math.abs(j)) !== 1); }
+    set(N - 8, 8, 1);
+    // reserve format areas
+    for (let i = 0; i < 8; i++) { if (M[8][i] === -1) M[8][i] = 0; if (M[i][8] === -1) M[i][8] = 0; if (M[8][N - 1 - i] === -1) M[8][N - 1 - i] = 0; if (M[N - 1 - i][8] === -1) M[N - 1 - i][8] = 0; }
+    if (M[8][8] === -1) M[8][8] = 0;
+    if (v >= 7) { for (let i = 0; i < 6; i++) for (let j = 0; j < 3; j++) { M[i][N - 11 + j] = 0; M[N - 11 + j][i] = 0; } }
+    const fixed = M.map(r => Int8Array.from(r));
+    // place data
+    let bi = 0; const total = out.length * 8;
+    for (let col = N - 1, up = true; col > 0; col -= 2, up = !up) {
+      if (col === 6) col--;
+      for (let k = 0; k < N; k++) { const r = up ? N - 1 - k : k; for (const c of [col, col - 1]) { if (fixed[r][c] !== -1) continue; const bit = bi < total ? (out[bi >> 3] >> (7 - (bi & 7))) & 1 : 0; bi++; M[r][c] = bit; } }
+    }
+    const masks = [(r, c) => (r + c) % 2 === 0, (r, c) => r % 2 === 0, (r, c) => c % 3 === 0, (r, c) => (r + c) % 3 === 0,
+      (r, c) => (Math.floor(r / 2) + Math.floor(c / 3)) % 2 === 0, (r, c) => (r * c) % 2 + (r * c) % 3 === 0,
+      (r, c) => ((r * c) % 2 + (r * c) % 3) % 2 === 0, (r, c) => ((r + c) % 2 + (r * c) % 3) % 2 === 0];
+    const fmt = (m) => { const v5 = (0 << 3) | m; let d = v5 << 10; for (let i = 14; i >= 10; i--) if (d >> i & 1) d ^= 0x537 << (i - 10); return ((v5 << 10) | d) ^ 0x5412; };
+    const ver = () => { let d = v << 12; for (let i = 17; i >= 12; i--) if (d >> i & 1) d ^= 0x1f25 << (i - 12); return (v << 12) | d; };
+    let best = null, bestScore = Infinity;
+    for (let m = 0; m < 8; m++) {
+      const G = M.map((row, r) => Int8Array.from(row, (val, c) => fixed[r][c] === -1 && masks[m](r, c) ? val ^ 1 : val));
+      const f = fmt(m);
+      for (let i = 0; i < 15; i++) { const bit = (f >> i) & 1;
+        // vertical strip col 8
+        const r1 = i < 6 ? i : i < 8 ? i + 1 : N - 15 + i; G[r1][8] = bit;
+        const c2 = i < 8 ? N - 1 - i : i < 9 ? 7 : 14 - i; G[8][c2] = bit; }
+      if (v >= 7) { const vv = ver(); for (let i = 0; i < 18; i++) { const bit = (vv >> i) & 1; G[Math.floor(i / 3)][N - 11 + i % 3] = bit; G[N - 11 + i % 3][Math.floor(i / 3)] = bit; } }
+      // penalty (simplified: runs + dark ratio)
+      let s = 0;
+      for (let r = 0; r < N; r++) { let run = 1; for (let c = 1; c < N; c++) { if (G[r][c] === G[r][c - 1]) { run++; if (run === 5) s += 3; else if (run > 5) s++; } else run = 1; } }
+      for (let c = 0; c < N; c++) { let run = 1; for (let r = 1; r < N; r++) { if (G[r][c] === G[r - 1][c]) { run++; if (run === 5) s += 3; else if (run > 5) s++; } else run = 1; } }
+      for (let r = 0; r < N - 1; r++) for (let c = 0; c < N - 1; c++) { const a = G[r][c]; if (a === G[r][c + 1] && a === G[r + 1][c] && a === G[r + 1][c + 1]) s += 3; }
+      let dark = 0; for (const row of G) for (const x of row) dark += x; s += Math.floor(Math.abs(dark * 100 / (N * N) - 50) / 5) * 10;
+      if (s < bestScore) { bestScore = s; best = G; }
+    }
+    return { size: N, get: (r, c) => best[r][c] === 1 };
+  }
+  function svg(str, opts = {}) {
+    const q = encode(str), m = opts.margin ?? 2, S = q.size + m * 2; let d = '';
+    for (let r = 0; r < q.size; r++) for (let c = 0; c < q.size; c++) if (q.get(r, c)) d += `M${c + m} ${r + m}h1v1h-1z`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${S} ${S}" shape-rendering="crispEdges"><rect width="${S}" height="${S}" fill="${opts.bg || '#fff'}"/><path d="${d}" fill="${opts.fg || '#000'}"/></svg>`;
+  }
+  return { encode, svg };
+})();
+
+const OWNER = 'abdoulhamiddiallo';
+const HOST = `https://${OWNER}.github.io/`;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+// Fiche éditoriale des applications connues. Toute application absente d'ici est décrite automatiquement
+// à partir de son dépôt GitHub et de sa page (titre, description, couleur, langue).
+const M = {
+  'courtside-nba':            { e: '🏀', c: 'Sport',      col: '#f97316', y: 79,  n: 'COURTSIDE', d: '79 saisons de NBA, de 1946 à aujourd’hui : cartes de tir, comparateur de joueurs, classements, palmarès et scouting.' },
+  'cadence':                  { e: '📈', c: 'Finance',    col: '#10b981', y: 156, n: 'Cadence', d: 'Laboratoire d’investissement programmé : 156 ans de marchés, 37 séries, 59 ETF, fiscalité française, portefeuille et retraits.' },
+  'alphapulse':               { e: '📰', c: 'Finance',    col: '#7c3aed', y: 1,   n: 'AlphaPulse', d: 'Le sentiment médiatique des valeurs du S&P 500 : score PULSE, divergence sentiment/prix, clustering des narratifs.' },
+  'fortune-atlas':            { e: '💎', c: 'Finance',    col: '#c9a227', y: 39,  n: 'Fortune Atlas', d: 'Atlas interactif des plus grandes fortunes mondiales, de 1987 à 2026 : classements, pays, secteurs, trajectoires.' },
+  'energy-majors-intelligence':{ e: '🛢️', c: 'Énergie',   col: '#e4002b', y: 155, n: 'Energy Majors Intelligence', d: 'Six supermajors pétrolières — Aramco, ExxonMobil, Shell, bp, Chevron, TotalEnergies — de 1870 à 2025 : production, transition, climat, carte mondiale.' },
+  'us-energy-250-years':      { e: '⚡', c: 'Énergie',    col: '#eab308', y: 250, n: '250 Years of U.S. Energy', d: '250 ans de consommation d’énergie aux États-Unis (1775–2025) : pétrole, gaz, charbon, nucléaire, renouvelables, par secteur et par État.' },
+  'bauxite-atlas':            { e: '⛏️', c: 'Industrie',  col: '#b45309', y: 126, n: 'Bauxite Atlas', d: '126 ans de bauxite, d’alumine et d’aluminium : 50 pays producteurs depuis 1913, chaîne de valeur et acteurs (CBG, SMB, GAC…).' },
+  'big-pharma':               { e: '💊', c: 'Industrie',  col: '#0891b2', y: 30,  n: 'Big Pharma', d: 'L’industrie pharmaceutique mondiale : 504 laboratoires cotés, 50 dossiers d’entreprises, médicaments phares et pipelines.' },
+  'defense-industry':         { e: '🛡️', c: 'Industrie',  col: '#475569', y: 30,  n: 'Defense Industry', d: 'Console de renseignement sur l’industrie de l’armement : dépenses militaires, exportations d’armes, grandes compagnies (SIPRI).' },
+  'us-elections':             { e: '🗳️', c: 'États-Unis', col: '#3b5bdb', y: 21,  n: 'EAVS Explorer', d: 'Onze cycles d’élections américaines (2004–2025) : participation, inscriptions, vote par correspondance, bureaux de vote, 56 juridictions.' },
+  'us-population':            { e: '🗺️', c: 'États-Unis', col: '#0ea5e9', y: 10,  n: 'U.S. Population', d: 'La population des 50 États, du District de Columbia et de Porto Rico, 2010–2019 : cartes, classements et profils.' },
+  'resultats-guinee':         { e: '🎓', c: 'Guinée',     col: '#16a34a', y: 10,  n: 'Résultats Guinée', d: 'Observatoire des examens nationaux guinéens : baccalauréat, BEPC et entrée en 7e année, sessions 2017 à 2026.' },
+  'wildlife-watch-nyc':       { e: '🦝', c: 'Nature',     col: '#2a78d6', y: 1,   n: 'Wildlife Watch NYC', d: '982 interventions animalières des Urban Park Rangers de New York (2018–2019), d’après NYC Open Data.' },
+};
+const HIDE = new Set([`${OWNER}.github.io`]);
+const KW = [[/nba|foot|sport|tour|f1|formula/i, 'Sport'], [/energ|oil|petrol|gaz|solar|nucl/i, 'Énergie'], [/etf|invest|bourse|stock|fortune|finance|pulse|bank/i, 'Finance'], [/pharma|defense|bauxite|industr|auto|mining/i, 'Industrie'], [/guinee|guinée|conakry/i, 'Guinée'], [/us-|usa|america|election|population/i, 'États-Unis'], [/wild|nature|animal|climat/i, 'Nature']];
+const PAL = ['#f97316', '#10b981', '#3b82f6', '#a855f7', '#ef4444', '#eab308', '#06b6d4', '#ec4899'];
+
+const state = { apps: [], cat: 'Tous', q: '', sort: 'recent', view: 'grid', enriched: false };
+const fmtDate = d => new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+const rel = d => { const s = (Date.now() - new Date(d)) / 1000; if (s < 3600) return 'à l’instant'; if (s < 86400) return `il y a ${Math.floor(s / 3600)} h`; const j = Math.floor(s / 86400); if (j < 30) return `il y a ${j} j`; return fmtDate(d); };
+const human = s => s.replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const hash = s => { let h = 0; for (const ch of s) h = (h * 31 + ch.charCodeAt(0)) | 0; return Math.abs(h); };
+
+function toApp(r) {
+  const m = M[r.name] || {};
+  const cat = m.c || KW.find(([re]) => re.test(r.name + ' ' + (r.description || '')))?.[1] || 'Exploration';
+  return {
+    repo: r.name, url: r.homepage && /^https?:/.test(r.homepage) ? r.homepage : `${HOST}${r.name}/`,
+    name: m.n || human(r.name), desc: m.d || r.description || '', cat, emoji: m.e || '🧭',
+    color: m.col || PAL[hash(r.name) % PAL.length], years: m.y || 0, lang: 'fr',
+    pushed: r.pushed_at, created: r.created_at, stars: r.stargazers_count || 0, size: r.size, ok: true, curated: !!M[r.name],
+  };
+}
+
+async function load() {
+  const key = 'studio.repos.v1';
+  let cached = null;
+  try { cached = JSON.parse(localStorage.getItem(key) || 'null'); } catch {}
+  if (cached?.t && Date.now() - cached.t < 10 * 60e3) { apply(cached.repos); }
+  try {
+    const res = await fetch(`https://api.github.com/users/${OWNER}/repos?per_page=100&sort=pushed`, { headers: { Accept: 'application/vnd.github+json' } });
+    if (!res.ok) throw new Error(res.status);
+    const repos = await res.json();
+    try { localStorage.setItem(key, JSON.stringify({ t: Date.now(), repos })); } catch {}
+    apply(repos);
+  } catch (e) {
+    if (cached?.repos) { apply(cached.repos); setLive(true, 'Hors ligne — dernière synchronisation ' + rel(cached.t)); }
+    else { // repli : fiche éditoriale seule
+      apply(Object.keys(M).map(n => ({ name: n, pushed_at: '2026-09-12T12:00:00Z', created_at: '2026-08-01T00:00:00Z', has_pages: true })));
+      setLive(true, 'GitHub inaccessible — catalogue de secours affiché');
+    }
+  }
+}
+function setLive(err, txt) { const l = $('#live'); l.classList.toggle('err', err); $('span', l).textContent = txt; }
+
+function apply(repos) {
+  const apps = repos.filter(r => r.has_pages && !HIDE.has(r.name) && !r.fork && !r.archived).map(toApp);
+  // conserver l'enrichissement déjà obtenu
+  const prev = Object.fromEntries(state.apps.map(a => [a.repo, a]));
+  for (const a of apps) if (prev[a.repo]) Object.assign(a, { ok: prev[a.repo].ok, lang: prev[a.repo].lang, name: prev[a.repo].name, desc: prev[a.repo].desc, color: prev[a.repo].color });
+  state.apps = apps;
+  setLive(false, `Catalogue synchronisé en direct avec GitHub · ${apps.length} applications`);
+  render();
+  if (!state.enriched) { state.enriched = true; enrich(); }
+}
+
+// Lecture de chaque page publiée (même origine) : titre, description, langue, couleur, disponibilité.
+async function enrich() {
+  const same = location.hostname === `${OWNER}.github.io`;
+  await Promise.all(state.apps.map(async a => {
+    try {
+      const res = await fetch(a.url, { cache: 'no-store', mode: same ? 'same-origin' : 'cors' });
+      if (!res.ok) { a.ok = false; return; }
+      if (!same) return;
+      const html = (await res.text()).slice(0, 60000);
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const t = doc.querySelector('title')?.textContent?.trim();
+      const d = doc.querySelector('meta[name="description"]')?.content?.trim();
+      const th = doc.querySelector('meta[name="theme-color"]')?.content?.trim();
+      const lang = (doc.documentElement.getAttribute('lang') || '').slice(0, 2).toLowerCase();
+      if (lang) a.lang = lang;
+      if (!a.curated) { if (t) a.name = t.split(/\s[—|·–-]\s/)[0].trim() || t; if (d && !a.desc) a.desc = d; if (th && /^#[0-9a-f]{6}$/i.test(th) && !/^#(fff|000)/i.test(th)) a.color = th; }
+    } catch { /* hors ligne ou origine différente : on garde la fiche */ }
+  }));
+  render();
+}
+
+function filtered() {
+  const q = state.q.trim().toLowerCase();
+  let list = state.apps.filter(a => (state.cat === 'Tous' || a.cat === state.cat) && (!q || `${a.name} ${a.desc} ${a.cat} ${a.repo}`.toLowerCase().includes(q)));
+  const by = { recent: (a, b) => new Date(b.pushed) - new Date(a.pushed), old: (a, b) => new Date(a.created) - new Date(b.created), name: (a, b) => a.name.localeCompare(b.name, 'fr'), cat: (a, b) => a.cat.localeCompare(b.cat, 'fr') || a.name.localeCompare(b.name, 'fr') };
+  return list.sort(by[state.sort]);
+}
+
+function render() {
+  const apps = state.apps;
+  $('#s-n').textContent = apps.length;
+  const cats = [...new Set(apps.map(a => a.cat))];
+  $('#s-u').textContent = cats.length;
+  const last = apps.map(a => a.pushed).sort().pop();
+  $('#s-d').textContent = last ? rel(last) : '—';
+  $('#s-y').textContent = apps.reduce((s, a) => s + a.years, 0).toLocaleString('fr-FR');
+  // chips
+  const counts = Object.fromEntries(cats.map(c => [c, apps.filter(a => a.cat === c).length]));
+  $('#chips').innerHTML = ['Tous', ...cats.sort((a, b) => counts[b] - counts[a] || a.localeCompare(b))].map(c => `<button class="chip${state.cat === c ? ' on' : ''}" data-c="${esc(c)}">${esc(c)} <span class="n">${c === 'Tous' ? apps.length : counts[c]}</span></button>`).join('');
+  const list = filtered(), el = $('#list');
+  el.className = state.view === 'grid' ? 'grid' : 'tl';
+  if (!list.length) { el.innerHTML = `<div class="empty">Aucune application ne correspond à « ${esc(state.q)} ».</div>`; return; }
+  const isNew = a => Date.now() - new Date(a.created) < 14 * 86400e3;
+  if (state.view === 'grid') {
+    el.innerHTML = list.map((a, i) => `
+<article class="card${a.ok ? '' : ' off'}" style="--c:${a.color};animation-delay:${Math.min(i, 12) * 40}ms" data-r="${a.repo}">
+  <div class="band"><div class="glyph">${a.emoji}</div><div class="tag">${isNew(a) ? '<span class="pill new">Nouveau</span>' : ''}${a.ok ? '' : '<span class="pill">Publication en cours</span>'}<span class="pill lang">${a.lang.toUpperCase()}</span></div></div>
+  <div class="body"><div class="cat">${esc(a.cat)}</div><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p>
+    <div class="meta"><span title="Dernière mise à jour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${rel(a.pushed)}</span>${a.years ? `<span title="Profondeur historique"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/></svg>${a.years} ans</span>` : ''}</div></div>
+  <div class="acts"><a class="btn primary" href="${a.url}" target="_blank" rel="noopener">Ouvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    <button class="btn" data-prev="${a.repo}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Aperçu</button>
+    <button class="btn sq" data-share="${a.repo}" title="Partager"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></button></div>
+</article>`).join('');
+  } else {
+    const groups = {};
+    for (const a of list) { const k = fmtDate(state.sort === 'old' ? a.created : a.pushed); (groups[k] ||= []).push(a); }
+    el.innerHTML = Object.entries(groups).map(([k, arr]) => `<div class="day"><h4>${k}</h4>${arr.map(a => `<a class="row" style="--c:${a.color}" href="${a.url}" target="_blank" rel="noopener" data-r="${a.repo}"><div class="g">${a.emoji}</div><div><b>${esc(a.name)}</b><small>${esc(a.cat)} · ${esc(a.desc).slice(0, 90)}${a.desc.length > 90 ? '…' : ''}</small></div><span class="r">${a.repo}</span></a>`).join('')}</div>`).join('');
+  }
+}
+
+// ---- Aperçu / partage ----
+let cur = null;
+function openPreview(repo) {
+  const a = state.apps.find(x => x.repo === repo); if (!a) return; cur = a;
+  const m = $('#modal'); m.classList.add('open'); document.body.style.overflow = 'hidden';
+  $('.sheet', m).style.setProperty('--c', a.color);
+  $('#m-g').textContent = a.emoji; $('#m-t').textContent = a.name; $('#m-u').textContent = a.url; $('#m-p').textContent = a.desc;
+  $('#m-open').href = a.url; $('#m-link').value = a.url;
+  $('#m-kv').innerHTML = `<span>Univers</span><b>${esc(a.cat)}</b><span>Mise à jour</span><b>${fmtDate(a.pushed)}</b><span>Créée</span><b>${fmtDate(a.created)}</b><span>Dépôt</span><b>${a.repo}</b>`;
+  $('#m-qrbox').innerHTML = QR.svg(a.url, { fg: '#0b0d12' });
+  $('#m-ld').style.display = ''; const f = $('#m-if'); f.src = 'about:blank'; requestAnimationFrame(() => { f.src = a.url; });
+  $('#m-bd').classList.remove('qrmode');
+  history.replaceState(null, '', `#app=${repo}`);
+}
+function closePreview() { $('#modal').classList.remove('open'); document.body.style.overflow = ''; $('#m-if').src = 'about:blank'; history.replaceState(null, '', location.pathname); cur = null; }
+function toast(t) { const el = $('#toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 1800); }
+async function share(url, title) {
+  if (navigator.share) { try { await navigator.share({ title, url }); return; } catch (e) { if (e.name === 'AbortError') return; } }
+  try { await navigator.clipboard.writeText(url); toast('Lien copié'); } catch { prompt('Copiez ce lien :', url); }
+}
+
+// ---- Événements ----
+$('#list').addEventListener('click', e => {
+  const p = e.target.closest('[data-prev]'); if (p) { openPreview(p.dataset.prev); return; }
+  const s = e.target.closest('[data-share]'); if (s) { const a = state.apps.find(x => x.repo === s.dataset.share); share(a.url, a.name); }
+});
+$('#chips').addEventListener('click', e => { const c = e.target.closest('.chip'); if (c) { state.cat = c.dataset.c; render(); } });
+$('#q').addEventListener('input', e => { state.q = e.target.value; render(); });
+$('#sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
+$('#view').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; state.view = b.dataset.v; $$('#view button').forEach(x => x.classList.toggle('on', x === b)); render(); });
+$('#m-dev').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('#m-dev button').forEach(x => x.classList.toggle('on', x === b)); $('#m-devbox').classList.toggle('phone', b.dataset.d === 'phone'); $('#m-bd').classList.remove('qrmode'); });
+$('#m-qr').addEventListener('click', () => $('#m-bd').classList.toggle('qrmode'));
+$('#m-x').addEventListener('click', closePreview);
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closePreview(); });
+$('#m-if').addEventListener('load', () => { if ($('#m-if').src !== 'about:blank') $('#m-ld').style.display = 'none'; });
+$('#m-copy').addEventListener('click', () => share(cur.url, cur.name));
+$('#share').addEventListener('click', () => share(location.origin + location.pathname, 'Studio — Abdoul Hamid Diallo'));
+$('#theme').addEventListener('click', () => { const t = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'; document.documentElement.dataset.theme = t; try { localStorage.setItem('studio.theme', t); } catch {} $('meta[name=theme-color]').content = t === 'light' ? '#f5f6fa' : '#0b0d12'; });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && cur) closePreview();
+  if (e.key === '/' && document.activeElement !== $('#q')) { e.preventDefault(); $('#q').focus(); }
+});
+$('#yr').textContent = new Date().getFullYear();
+try { const t = localStorage.getItem('studio.theme'); if (t) { document.documentElement.dataset.theme = t; $('meta[name=theme-color]').content = t === 'light' ? '#f5f6fa' : '#0b0d12'; } } catch {}
+load().then(() => { const m = location.hash.match(/^#app=([\w.-]+)$/); if (m) openPreview(m[1]); });
+
+</script>
+</body>
+</html>
+
