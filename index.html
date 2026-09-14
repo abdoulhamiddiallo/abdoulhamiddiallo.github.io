@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Abdoul Hamid Diallo · Applications de données</title>
-<meta name="description" content="Toutes les applications de données d'Abdoul Hamid Diallo en une seule adresse — sport, énergie, finance, industrie, élections, éducation. Catalogue mis à jour automatiquement.">
+<meta name="description" content="Toutes les applications de données d'Abdoul Hamid Diallo, Data Engineer (Microsoft Fabric, Azure, Power BI, SQL Server, AI, Microsoft Foundry), en une seule adresse : sport, énergie, finance, industrie, élections, éducation. Catalogue mis à jour automatiquement.">
 <meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-title" content="AHD Studio">
 <meta property="og:title" content="Abdoul Hamid Diallo · Applications de données">
@@ -49,6 +49,7 @@ img{display:block;max-width:100%}
 .search svg{width:16px;height:16px;color:var(--fg3);flex:none}
 .search input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--fg);font:inherit;font-size:14px}
 .search input::placeholder{color:var(--fg3)}
+.search input::-webkit-search-cancel-button,.search input::-webkit-search-decoration{-webkit-appearance:none;display:none}
 .search kbd{font-family:var(--mono);font-size:11px;color:var(--fg3);border:1px solid var(--line2);border-radius:5px;padding:1px 6px;background:var(--sf2)}
 .ibtn{width:40px;height:40px;border-radius:10px;border:1px solid var(--line2);background:var(--sf);display:grid;place-items:center;color:var(--fg2);transition:.15s;flex:none}
 .ibtn:hover{color:var(--fg);border-color:var(--line3);background:var(--sf2)}
@@ -200,7 +201,21 @@ select.sort{background:var(--sf);border:1px solid var(--line2);color:var(--fg2);
 .side .link input{flex:1;min-width:0;background:var(--sf);border:1px solid var(--line2);border-radius:9px;padding:9px 11px;color:var(--fg2);font:inherit;font-size:12px;font-family:var(--mono);outline:0}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--fg);color:var(--bg2);padding:10px 16px;border-radius:10px;font-size:13.5px;font-weight:600;z-index:60;transition:.25s;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%)}
-.empty{padding:60px 20px;text-align:center;color:var(--fg3)}
+
+.search .clr{display:none;width:24px;height:24px;border-radius:50%;background:var(--sf3);color:var(--fg2);place-items:center;flex:none}
+.search .clr svg{width:12px;height:12px}
+.search.has .clr{display:grid}.search.has kbd{display:none}
+.search .clr:hover{background:var(--line2);color:var(--fg)}
+mark{background:color-mix(in srgb,var(--acc) 18%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+.grid .empty{grid-column:1/-1}
+.empty{padding:56px 20px;text-align:center;color:var(--fg2)}
+.empty b{display:block;color:var(--fg);font-size:17px;font-weight:700;margin-bottom:6px}
+.empty .sug{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 0}
+.empty .sug button{border:1px solid var(--line2);background:var(--sf);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:600;color:var(--fg2)}
+.empty .sug button:hover{border-color:var(--acc);color:var(--acc)}
+.res{font-size:13px;color:var(--fg2);margin:0 0 12px}
+.res b{color:var(--fg)}
+.res button{color:var(--acc);font-weight:600;margin-left:8px}
 .skel{aspect-ratio:1/1.05;border-radius:var(--r);background:linear-gradient(90deg,var(--sf),var(--sf2),var(--sf));background-size:200% 100%;animation:sh 1.3s infinite;border:1px solid var(--line)}
 @keyframes sh{to{background-position:-200% 0}}
 footer{border-top:1px solid var(--line);padding:36px 0 56px;color:var(--fg3);font-size:13px;background:var(--bg2)}
@@ -231,13 +246,28 @@ footer a:hover{color:var(--fg)}
 .about .cta{margin:0}
 footer .fb{display:flex;gap:14px;align-items:flex-start}
 footer .fava{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 0 0 2px var(--line2)}
+
+.cert-pill{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--acc);background:var(--acc-soft);border-radius:999px;padding:5px 12px 5px 9px;margin:-6px 0 16px}
+.cert-pill svg{width:14px;height:14px}
+.certs{margin-top:14px;background:var(--sf);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,3.5vw,36px);box-shadow:var(--shadow)}
+.certs-h{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:16px 40px;align-items:end;margin-bottom:22px}
+.certs-h h3{margin:0;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.025em;font-weight:800;line-height:1.15}
+.certs-h p{margin:0;color:var(--fg2);font-size:14px}
+.certs-g{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.certs-g li{display:flex;flex-direction:column;gap:6px;padding:16px 16px 14px;border:1px solid var(--line);border-radius:14px;background:var(--bg);transition:.18s}
+.certs-g li:hover{border-color:var(--line3);box-shadow:var(--shadow);transform:translateY(-2px)}
+.certs-g .code{display:inline-flex;align-self:flex-start;font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.02em;color:#fff;background:linear-gradient(180deg,#2563eb,#1d4ed8);border-radius:7px;padding:4px 8px}
+.certs-g .nm{font-weight:700;font-size:14px;letter-spacing:-.01em;line-height:1.3;margin-top:4px}
+.certs-g .lv{font-size:12px;color:var(--fg3)}
 @media (max-width:980px){
+  .certs-h{grid-template-columns:minmax(0,1fr)}.certs-g{grid-template-columns:repeat(2,minmax(0,1fr))}
   .about-card{grid-template-columns:minmax(0,1fr)}.about-ph{max-width:300px}
   .hero{grid-template-columns:minmax(0,1fr);gap:30px}.mock{padding-bottom:20px}
   .feat{grid-template-columns:1fr}.mock{aspect-ratio:1.3/1}
   .how{grid-template-columns:1fr}
 }
 @media (max-width:860px){
+  .certs-g{grid-template-columns:minmax(0,1fr)}
   .brand span.txt{display:none}.search{max-width:none}.search kbd{display:none}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px}.stat span{white-space:normal}.stat b{font-size:26px}
   .chips{flex:1 0 100%}
@@ -253,10 +283,10 @@ footer .fava{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none
 <header class="top"><div class="wrap">
   <a class="brand" href="./" aria-label="Accueil">
     <span class="ava"><img src="data:image/webp;base64,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" alt="" width="36" height="36"></span>
-    <span class="txt"><b>Abdoul Hamid Diallo</b><small>Applications de données</small></span>
+    <span class="txt"><b>Abdoul Hamid Diallo</b><small>Data Engineer · Fabric, Azure, Power BI, AI</small></span>
   </a>
   <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    <input id="q" type="search" placeholder="Rechercher une application, un thème, un pays…" autocomplete="off" aria-label="Rechercher"><kbd>/</kbd></label>
+    <input id="q" type="search" placeholder="Rechercher une application, un thème, un pays…" autocomplete="off" aria-label="Rechercher" spellcheck="false"><button type="button" class="clr" id="qx" title="Effacer la recherche" aria-label="Effacer la recherche"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6 6 18"/></svg></button><kbd>/</kbd></label>
   <button class="ibtn" id="share" title="Partager cette page" aria-label="Partager"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></button>
   <button class="ibtn" id="theme" title="Thème clair / sombre" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A5.5 5.5 0 0 1 13.4 3.1C13 3 12.5 3 12 3z"/></svg></button>
 </div></header>
@@ -266,7 +296,7 @@ footer .fava{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none
     <div>
       <div class="eyebrow"><i></i><span id="live-txt">Catalogue mis à jour automatiquement</span></div>
       <h1>Toutes mes applications de données, <span>une seule adresse.</span></h1>
-      <p class="lead">Des laboratoires de données interactifs — <b>sport, énergie, finance, industrie, élections, éducation</b> — construits pour explorer des décennies de chiffres. Ouvrez-les depuis votre téléphone ou votre ordinateur : rien à installer, un simple lien.</p>
+      <p class="lead">Des laboratoires de données interactifs (<b>sport, énergie, finance, industrie, élections, éducation</b>) construits pour explorer des décennies de chiffres. Ouvrez-les depuis votre téléphone ou votre ordinateur : rien à installer, un simple lien.</p>
       <div class="cta">
         <a class="btn pri" href="#apps">Explorer les applications <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
         <button class="btn" id="share2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>Partager le lien</button>
@@ -302,6 +332,7 @@ footer .fava{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none
         <button data-v="tl" title="Chronologie" aria-label="Vue chronologie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
       </div>
     </div>
+    <p class="res" id="res" hidden aria-live="polite"></p>
     <div id="list" class="grid" aria-live="polite">
       <div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div>
     </div>
@@ -310,7 +341,7 @@ footer .fava{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none
   <section class="how" aria-label="Comment ça marche">
     <div><div class="num">1</div><b>Je publie</b><span>Une application autonome, un seul fichier, mise en ligne sur mon GitHub.</span></div>
     <div><div class="num">2</div><b>Elle apparaît ici</b><span>Cette page interroge GitHub à chaque ouverture : toute nouvelle publication est détectée, sans réglage.</span></div>
-    <div><div class="num">3</div><b>Vous l'ouvrez partout</b><span>Téléphone, tablette, ordinateur — un lien, un QR code, et rien à installer.</span></div>
+    <div><div class="num">3</div><b>Vous l'ouvrez partout</b><span>Téléphone, tablette, ordinateur : un lien, un QR code, et rien à installer.</span></div>
   </section>
 
   <section class="about" id="about" aria-label="À propos de l'auteur">
@@ -319,20 +350,26 @@ footer .fava{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none
       <div class="about-tx">
         <div class="eyebrow2">L'auteur</div>
         <h2>Abdoul Hamid Diallo</h2>
-        <p class="role">Data Engineer · Microsoft Fabric, Power BI, SQL Server</p>
-        <p class="txt">Je conçois des tableaux de bord et des applications de données de bout en bout : collecte et préparation des chiffres, modélisation, visualisation, puis publication en accès libre. Chaque application de cette page est un fichier autonome, pensé pour s'ouvrir aussi bien sur un téléphone que sur un ordinateur.</p>
-        <div class="skills"><span>Microsoft Fabric</span><span>Power BI</span><span>SQL Server</span><span>Modélisation de données</span><span>Visualisation</span><span>Applications web autonomes</span></div>
+        <p class="role">Data Engineer · Microsoft Fabric, Azure, Power BI, SQL Server, AI &amp; Microsoft Foundry</p>
+        <div class="cert-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/><path d="m8.5 14-1.5 7 5-3 5 3-1.5-7"/></svg>7 certifications Microsoft Certified</div>
+        <p class="txt">Je conçois des tableaux de bord et des applications de données de bout en bout sur l’écosystème Microsoft : collecte et préparation des chiffres, modélisation, visualisation, puis publication en accès libre, avec Fabric, Azure, Power BI et SQL Server pour la donnée et Microsoft Foundry pour l’IA. Chaque application de cette page est un fichier autonome, pensé pour s'ouvrir aussi bien sur un téléphone que sur un ordinateur.</p>
+        <div class="skills"><span>Microsoft Fabric</span><span>Azure</span><span>Power BI</span><span>SQL Server</span><span>AI</span><span>Microsoft Foundry</span><span>Modélisation de données</span><span>Visualisation</span><span>Applications web autonomes</span></div>
         <div class="cta">
           <a class="btn pri" href="https://www.linkedin.com/in/abdoul-hamid-diallo-fabric-data-engineer/" target="_blank" rel="noopener">Me contacter sur LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
           <a class="btn" href="https://github.com/abdoulhamiddiallo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>Mon GitHub</a>
         </div>
       </div>
     </div>
+
+    <div class="certs" aria-label="Certifications Microsoft">
+      <div class="certs-h"><div><div class="eyebrow2">Certifications</div><h3>7 certifications Microsoft Certified</h3></div><p>Microsoft Fabric, Power BI, Azure Data et Azure AI : trois certifications Associate en analytique et ingénierie de données, deux en intelligence artificielle, deux fondamentaux.</p></div>
+      <ul class="certs-g"><li><span class="code">DP-600</span><span class="nm">Fabric Analytics Engineer Associate</span><span class="lv">Microsoft Certified · Associate</span></li><li><span class="code">DP-700</span><span class="nm">Fabric Data Engineer Associate</span><span class="lv">Microsoft Certified · Associate</span></li><li><span class="code">PL-300</span><span class="nm">Power BI Data Analyst Associate</span><span class="lv">Microsoft Certified · Associate</span></li><li><span class="code">AI-102</span><span class="nm">Azure AI Engineer Associate</span><span class="lv">Microsoft Certified · Associate</span></li><li><span class="code">DP-100</span><span class="nm">Azure Data Scientist Associate</span><span class="lv">Microsoft Certified · Associate</span></li><li><span class="code">AI-900</span><span class="nm">Azure AI Fundamentals</span><span class="lv">Microsoft Certified · Fundamentals</span></li><li><span class="code">DP-900</span><span class="nm">Azure Data Fundamentals</span><span class="lv">Microsoft Certified · Fundamentals</span></li></ul>
+    </div>
   </section>
 </main>
 
 <footer><div class="wrap">
-  <div class="fb"><img class="fava" src="data:image/webp;base64,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" alt="" width="40" height="40"><div><b>Abdoul Hamid Diallo — Applications de données</b><span>Des laboratoires interactifs construits pour explorer des décennies de chiffres, publiés en accès libre. Cette page se met à jour automatiquement à chaque nouvelle publication.</span></div></div>
+  <div class="fb"><img class="fava" src="data:image/webp;base64,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" alt="" width="40" height="40"><div><b>Abdoul Hamid Diallo · Applications de données</b><span>Des laboratoires interactifs construits pour explorer des décennies de chiffres, publiés en accès libre. Cette page se met à jour automatiquement à chaque nouvelle publication.</span></div></div>
   <div class="fr"><span class="live" id="live"><i></i><span>Synchronisé avec GitHub</span></span><span>© <span id="yr"></span> Abdoul Hamid Diallo · <a href="https://github.com/abdoulhamiddiallo" target="_blank" rel="noopener">GitHub</a></span></div>
 </div></footer>
 
@@ -457,19 +494,19 @@ const PREV = window.PREVIEWS || {};
 // Fiche éditoriale des applications connues. Toute application absente d'ici est décrite automatiquement
 // à partir de son dépôt GitHub et de sa page (titre, description, couleur, langue), avec une affiche générée.
 const M = {
-  'courtside-nba':            { e: '🏀', c: 'Sport',      col: '#ff7a1a', y: 79,  n: 'COURTSIDE', d: '79 saisons de NBA, de 1946 à aujourd’hui : cartes de tir, comparateur de joueurs, classements, palmarès et scouting.' },
-  'cadence':                  { e: '📈', c: 'Finance',    col: '#22c58b', y: 156, n: 'Cadence', d: 'Laboratoire d’investissement programmé : 156 ans de marchés, 37 séries, 59 ETF, fiscalité française, portefeuille et retraits.' },
-  'alphapulse':               { e: '📰', c: 'Finance',    col: '#9b6bff', y: 0,   n: 'AlphaPulse', d: 'Le sentiment médiatique des valeurs du S&P 500 : score PULSE, divergence sentiment/prix, clustering des narratifs.' },
-  'fortune-atlas':            { e: '💎', c: 'Finance',    col: '#e2b33a', y: 39,  n: 'Fortune Atlas', d: 'Atlas interactif des plus grandes fortunes mondiales, de 1987 à 2026 : classements, pays, secteurs, trajectoires.' },
-  'energy-majors-intelligence':{ e: '🛢️', c: 'Énergie',   col: '#ff4d5e', y: 155, n: 'Energy Majors Intelligence', d: 'Six supermajors pétrolières — Aramco, ExxonMobil, Shell, bp, Chevron, TotalEnergies — de 1870 à 2025 : production, transition, climat, carte mondiale.' },
-  'us-energy-250-years':      { e: '⚡', c: 'Énergie',    col: '#f5c518', y: 250, n: '250 Years of U.S. Energy', d: '250 ans de consommation d’énergie aux États-Unis (1775–2025) : pétrole, gaz, charbon, nucléaire, renouvelables, par secteur et par État.' },
-  'bauxite-atlas':            { e: '⛏️', c: 'Industrie',  col: '#d97b2b', y: 126, n: 'Bauxite Atlas', d: '126 ans de bauxite, d’alumine et d’aluminium : 50 pays producteurs depuis 1913, chaîne de valeur et acteurs (CBG, SMB, GAC…).' },
-  'big-pharma':               { e: '💊', c: 'Industrie',  col: '#2bb3d6', y: 30,  n: 'Big Pharma', d: 'L’industrie pharmaceutique mondiale : 504 laboratoires cotés, 50 dossiers d’entreprises, médicaments phares et pipelines.' },
-  'defense-industry':         { e: '🛡️', c: 'Industrie',  col: '#7ee081', y: 75,  n: 'Defense Industry', d: 'Console de renseignement sur l’industrie de l’armement depuis 1950 : dépenses militaires, exportations d’armes, grandes compagnies (SIPRI).' },
-  'us-elections':             { e: '🗳️', c: 'États-Unis', col: '#5b7cfa', y: 21,  n: 'EAVS Explorer', d: 'Onze cycles d’élections américaines (2004–2025) : participation, inscriptions, vote par correspondance, bureaux de vote, 56 juridictions.' },
-  'us-population':            { e: '🗺️', c: 'États-Unis', col: '#38bdf8', y: 10,  n: 'U.S. Population', d: 'La population des 50 États, du District de Columbia et de Porto Rico, 2010–2019 : cartes, classements et profils.' },
-  'resultats-guinee':         { e: '🎓', c: 'Guinée',     col: '#2fbf71', y: 10,  n: 'Résultats Guinée', d: 'Observatoire des examens nationaux guinéens : baccalauréat, BEPC et entrée en 7e année, sessions 2017 à 2026.' },
-  'wildlife-watch-nyc':       { e: '🦝', c: 'Nature',     col: '#4c8dff', y: 0,   n: 'Wildlife Watch NYC', d: '982 interventions animalières des Urban Park Rangers de New York (2018–2019), d’après NYC Open Data.' },
+  'courtside-nba':            { e: '🏀', c: 'Sport',      col: '#ff7a1a', y: 79,  n: 'COURTSIDE', d: '79 saisons de NBA, de 1946 à aujourd’hui : cartes de tir, comparateur de joueurs, classements, palmarès et scouting.' , k: 'basket basketball NBA joueurs équipes saisons tirs scouting palmarès classements sport américain' },
+  'cadence':                  { e: '📈', c: 'Finance',    col: '#22c58b', y: 156, n: 'Cadence', d: 'Laboratoire d’investissement programmé : 156 ans de marchés, 37 séries, 59 ETF, fiscalité française, portefeuille et retraits.' , k: 'ETF bourse épargne investissement programmé DCA dollar cost averaging portefeuille retraits fiscalité marchés actions obligations or' },
+  'alphapulse':               { e: '📰', c: 'Finance',    col: '#9b6bff', y: 0,   n: 'AlphaPulse', d: 'Le sentiment médiatique des valeurs du S&P 500 : score PULSE, divergence sentiment/prix, clustering des narratifs.' , k: 'S&P 500 actions sentiment médias presse news bourse Wall Street narratifs clustering' },
+  'fortune-atlas':            { e: '💎', c: 'Finance',    col: '#e2b33a', y: 39,  n: 'Fortune Atlas', d: 'Atlas interactif des plus grandes fortunes mondiales, de 1987 à 2026 : classements, pays, secteurs, trajectoires.' , k: 'milliardaires fortunes riches Forbes richesse patrimoine classement mondial secteurs pays' },
+  'energy-majors-intelligence':{ e: '🛢️', c: 'Énergie',   col: '#ff4d5e', y: 155, n: 'Energy Majors Intelligence', d: 'Six supermajors pétrolières (Aramco, ExxonMobil, Shell, bp, Chevron, TotalEnergies) de 1870 à 2025 : production, transition, climat, carte mondiale.' , k: 'pétrole gaz compagnies pétrolières supermajors Aramco ExxonMobil Shell bp Chevron TotalEnergies production climat transition carte' },
+  'us-energy-250-years':      { e: '⚡', c: 'Énergie',    col: '#f5c518', y: 250, n: '250 Years of U.S. Energy', d: '250 ans de consommation d’énergie aux États-Unis (1775–2025) : pétrole, gaz, charbon, nucléaire, renouvelables, par secteur et par État.' , k: 'énergie États-Unis USA consommation pétrole gaz charbon nucléaire renouvelables solaire éolien EIA histoire' },
+  'bauxite-atlas':            { e: '⛏️', c: 'Industrie',  col: '#d97b2b', y: 126, n: 'Bauxite Atlas', d: '126 ans de bauxite, d’alumine et d’aluminium : 50 pays producteurs depuis 1913, chaîne de valeur et acteurs (CBG, SMB, GAC…).' , k: 'bauxite alumine aluminium mines Guinée CBG SMB GAC production pays chaîne de valeur' },
+  'big-pharma':               { e: '💊', c: 'Industrie',  col: '#2bb3d6', y: 30,  n: 'Big Pharma', d: 'L’industrie pharmaceutique mondiale : 504 laboratoires cotés, 50 dossiers d’entreprises, médicaments phares et pipelines.' , k: 'pharmacie pharmaceutique médicaments laboratoires santé Pfizer Novartis Roche Sanofi pipelines' },
+  'defense-industry':         { e: '🛡️', c: 'Industrie',  col: '#7ee081', y: 75,  n: 'Defense Industry', d: 'Console de renseignement sur l’industrie de l’armement depuis 1950 : dépenses militaires, exportations d’armes, grandes compagnies (SIPRI).' , k: 'défense armement armes militaire dépenses exportations SIPRI compagnies Lockheed sécurité' },
+  'us-elections':             { e: '🗳️', c: 'États-Unis', col: '#5b7cfa', y: 21,  n: 'EAVS Explorer', d: 'Onze cycles d’élections américaines (2004–2025) : participation, inscriptions, vote par correspondance, bureaux de vote, 56 juridictions.' , k: 'élections américaines vote participation inscriptions correspondance bureaux de vote EAVS EAC politique' },
+  'us-population':            { e: '🗺️', c: 'États-Unis', col: '#38bdf8', y: 10,  n: 'U.S. Population', d: 'La population des 50 États, du District de Columbia et de Porto Rico, 2010–2019 : cartes, classements et profils.' , k: 'population démographie États-Unis USA États recensement cartes' },
+  'resultats-guinee':         { e: '🎓', c: 'Guinée',     col: '#2fbf71', y: 10,  n: 'Résultats Guinée', d: 'Observatoire des examens nationaux guinéens : baccalauréat, BEPC et entrée en 7e année, sessions 2017 à 2026.' , k: 'Guinée examens baccalauréat bac BEPC 7e année école éducation résultats scolaires Conakry' },
+  'wildlife-watch-nyc':       { e: '🦝', c: 'Nature',     col: '#4c8dff', y: 0,   n: 'Wildlife Watch NYC', d: '982 interventions animalières des Urban Park Rangers de New York (2018–2019), d’après NYC Open Data.' , k: 'animaux faune nature New York NYC parcs rangers interventions raton laveur open data' },
 };
 const HIDE = new Set([`${OWNER}.github.io`]);
 const KW = [[/nba|foot|sport|tour|f1|formula|olymp/i, 'Sport'], [/energ|oil|petrol|gaz|solar|nucl/i, 'Énergie'], [/etf|invest|bourse|stock|fortune|finance|pulse|bank|crypto/i, 'Finance'], [/pharma|defense|bauxite|industr|auto|mining|aero/i, 'Industrie'], [/guinee|guinée|conakry/i, 'Guinée'], [/us-|usa|america|election|population/i, 'États-Unis'], [/wild|nature|animal|climat|meteo/i, 'Nature']];
@@ -490,7 +527,7 @@ function toApp(r) {
   return {
     repo: r.name, url: r.homepage && /^https?:/.test(r.homepage) ? r.homepage : `${HOST}${r.name}/`,
     name: m.n || human(r.name), desc: m.d || r.description || '', cat, emoji: m.e || '',
-    color: m.col || PAL[hash(r.name) % PAL.length], years: m.y || 0, lang: 'fr', shot: PREV[r.name] || null,
+    color: m.col || PAL[hash(r.name) % PAL.length], years: m.y || 0, lang: 'fr', shot: PREV[r.name] || null, kw: m.k || '',
     pushed: r.pushed_at, created: r.created_at, ok: true, curated: !!M[r.name],
   };
 }
@@ -507,10 +544,10 @@ async function load() {
     try { localStorage.setItem(key, JSON.stringify({ t: Date.now(), repos })); } catch {}
     apply(repos);
   } catch (e) {
-    if (cached?.repos) { apply(cached.repos); setLive(true, 'Hors ligne — dernière synchronisation ' + rel(cached.t)); }
+    if (cached?.repos) { apply(cached.repos); setLive(true, 'Hors ligne · dernière synchronisation ' + rel(cached.t)); }
     else {
       apply(Object.keys(M).map(n => ({ name: n, pushed_at: '2026-09-12T12:00:00Z', created_at: '2026-08-01T00:00:00Z', has_pages: true })));
-      setLive(true, 'GitHub inaccessible — catalogue de secours affiché');
+      setLive(true, 'GitHub inaccessible · catalogue de secours affiché');
     }
   }
 }
@@ -547,11 +584,57 @@ async function enrich() {
   render(); renderFeatured(); renderMock();
 }
 
-function filtered() {
-  const q = state.q.trim().toLowerCase();
-  const list = state.apps.filter(a => (state.cat === 'Tous' || a.cat === state.cat) && (!q || `${a.name} ${a.desc} ${a.cat} ${a.repo}`.toLowerCase().includes(q)));
+// ---- Recherche : insensible aux accents, à la casse et aux fautes légères ; classement par pertinence ; surlignage.
+const norm = s => String(s ?? '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[’`´]/g, "'").replace(/œ/g, 'oe').replace(/æ/g, 'ae');
+const tokens = q => norm(q).split(/[\s,;]+/).filter(t => t.length > 0);
+function lev1(a, b) { // vrai si distance d'édition ≤ 1
+  if (Math.abs(a.length - b.length) > 1) return false;
+  let i = 0, j = 0, d = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++d > 1) return false;
+    if (a.length > b.length) i++; else if (a.length < b.length) j++; else { i++; j++; }
+  }
+  return d + (a.length - i) + (b.length - j) <= 1;
+}
+const fields = a => [[a.name, 6], [a.repo, 4], [a.cat, 4], [a.kw, 3], [a.desc, 1], [a.years ? `${a.years} ans` : '', 1]];
+function scoreOf(a, toks) {
+  let total = 0;
+  for (const t of toks) {
+    let best = 0;
+    for (const [txt, w] of fields(a)) {
+      if (!txt) continue;
+      const n = norm(txt);
+      if (n.includes(t)) { best = Math.max(best, w * (n.startsWith(t) ? 2 : 1.5)); continue; }
+      if (t.length >= 4) for (const wd of n.split(/[^a-z0-9&$]+/)) if (wd.length >= 4 && (wd.startsWith(t) || lev1(wd, t) || lev1(wd.slice(0, t.length), t) || lev1(wd.slice(0, t.length + 1), t))) { best = Math.max(best, w); break; }
+    }
+    if (!best) return 0;
+    total += best;
+  }
+  return total;
+}
+function filtered(cat = state.cat) {
+  const toks = tokens(state.q);
+  const list = [];
+  for (const a of state.apps) {
+    if (cat !== 'Tous' && a.cat !== cat) continue;
+    const s = toks.length ? scoreOf(a, toks) : 1;
+    if (s) list.push([s, a]);
+  }
   const by = { recent: (a, b) => new Date(b.pushed) - new Date(a.pushed), old: (a, b) => new Date(a.created) - new Date(b.created), name: (a, b) => a.name.localeCompare(b.name, 'fr'), cat: (a, b) => a.cat.localeCompare(b.cat, 'fr') || a.name.localeCompare(b.name, 'fr'), years: (a, b) => b.years - a.years };
-  return list.sort(by[state.sort]);
+  list.sort((x, y) => (toks.length && y[0] - x[0]) || by[state.sort](x[1], y[1]));
+  return list.map(x => x[1]);
+}
+// Surligne les termes recherchés dans un texte (insensible aux accents), en échappant le HTML.
+function hl(text) {
+  const toks = tokens(state.q); text = String(text ?? '');
+  if (!toks.length) return esc(text);
+  const ch = [...text]; const nc = ch.map(c => { const n = norm(c); return n.length === 1 ? n : (n[0] || c); });
+  const flat = nc.join(''); const on = new Array(ch.length).fill(false);
+  for (const t of toks) { let i = flat.indexOf(t); while (i >= 0) { for (let k = i; k < i + t.length; k++) on[k] = true; i = flat.indexOf(t, i + 1); } }
+  let out = '', open = false;
+  ch.forEach((c, i) => { if (on[i] && !open) { out += '<mark>'; open = true; } if (!on[i] && open) { out += '</mark>'; open = false; } out += esc(c); });
+  return out + (open ? '</mark>' : '');
 }
 const isNew = a => Date.now() - new Date(a.created) < 14 * 86400e3;
 const shotHTML = (a, big) => a.shot ? `<img src="${a.shot}" alt="" loading="lazy" decoding="async">` : `<div class="poster" style="--c:${a.color}"><b>${esc(a.name)}</b></div>`;
@@ -567,9 +650,17 @@ function render() {
   $('#count-k').textContent = `${apps.length} applications · ${cats.length} univers`;
   const counts = Object.fromEntries(cats.map(c => [c, apps.filter(a => a.cat === c).length]));
   $('#chips').innerHTML = ['Tous', ...cats.sort((a, b) => counts[b] - counts[a] || a.localeCompare(b))].map(c => `<button class="chip${state.cat === c ? ' on' : ''}" data-c="${esc(c)}">${esc(c)} <span class="n">${c === 'Tous' ? apps.length : counts[c]}</span></button>`).join('');
-  const list = filtered(), el = $('#list');
+  const q = state.q.trim();
+  let list = filtered();
+  if (q && !list.length && state.cat !== 'Tous' && filtered('Tous').length) { state.cat = 'Tous'; $$('#chips .chip').forEach(c => c.classList.toggle('on', c.dataset.c === 'Tous')); list = filtered(); }
+  const el = $('#list'); const res = $('#res');
+  $('.search').classList.toggle('has', !!q);
+  if (q) { res.hidden = false; res.innerHTML = `<b>${list.length}</b> ${list.length > 1 ? 'résultats' : 'résultat'} pour « ${esc(q)} »${state.cat !== 'Tous' ? ` dans ${esc(state.cat)}` : ''}<button type="button" id="qx2">Effacer</button>`; } else res.hidden = true;
   el.className = state.view === 'grid' ? 'grid' : 'tl';
-  if (!list.length) { el.innerHTML = `<div class="empty">Aucune application ne correspond à « ${esc(state.q)} ».</div>`; return; }
+  if (!list.length) {
+    const sug = [...new Set([...cats, ...apps.slice(0, 4).map(a => a.name)])].slice(0, 6);
+    el.innerHTML = `<div class="empty"><b>Aucune application ne correspond à « ${esc(q)} »</b>Vérifiez l’orthographe ou essayez un thème, un pays, une compagnie ou une année.<div class="sug">${sug.map(s => `<button type="button" data-q="${esc(s)}">${esc(s)}</button>`).join('')}</div></div>`; return;
+  }
   if (state.view === 'grid') {
     el.innerHTML = list.map((a, i) => `
 <article class="card${a.ok ? '' : ' off'}" style="--c:${a.color};animation-delay:${Math.min(i, 12) * 45}ms" data-r="${a.repo}">
@@ -577,7 +668,7 @@ function render() {
     <div class="top-r">${isNew(a) ? '<span class="pill new">Nouveau</span>' : ''}${a.ok ? '' : '<span class="pill">Publication en cours</span>'}<span class="pill mono">${a.lang.toUpperCase()}</span></div>
     <div class="over"><button class="go" data-prev="${a.repo}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Aperçu en direct</button></div>
   </div>
-  <div class="body"><div class="cat"><i></i>${esc(a.cat)}</div><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p>
+  <div class="body"><div class="cat"><i></i>${hl(a.cat)}</div><h3>${hl(a.name)}</h3><p>${hl(a.desc)}</p>
     <div class="meta"><span title="Dernière mise à jour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${rel(a.pushed)}</span>${a.years ? `<span title="Profondeur historique"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/></svg>${yrs(a.years)} de données</span>` : ''}</div></div>
   <div class="acts"><a class="btn pri" href="${a.url}" target="_blank" rel="noopener">Ouvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
     <button class="btn" data-prev="${a.repo}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>QR &amp; aperçu</button>
@@ -587,7 +678,7 @@ function render() {
   } else {
     const groups = {};
     for (const a of list) { const k = fmtDate(state.sort === 'old' ? a.created : a.pushed); (groups[k] ||= []).push(a); }
-    el.innerHTML = Object.entries(groups).map(([k, arr]) => `<div class="day"><h4>${k}</h4>${arr.map(a => `<a class="row" style="--c:${a.color}" href="${a.url}" target="_blank" rel="noopener"><div class="th">${a.shot ? `<img src="${a.shot}" alt="" loading="lazy">` : `<div class="poster">${esc(a.name.slice(0,2))}</div>`}</div><div><b>${esc(a.name)}</b><small>${esc(a.cat)} · ${esc(a.desc).slice(0, 90)}${a.desc.length > 90 ? '…' : ''}</small></div><span class="r">${a.repo}</span></a>`).join('')}</div>`).join('');
+    el.innerHTML = Object.entries(groups).map(([k, arr]) => `<div class="day"><h4>${k}</h4>${arr.map(a => `<a class="row" style="--c:${a.color}" href="${a.url}" target="_blank" rel="noopener"><div class="th">${a.shot ? `<img src="${a.shot}" alt="" loading="lazy">` : `<div class="poster">${esc(a.name.slice(0,2))}</div>`}</div><div><b>${hl(a.name)}</b><small>${hl(a.cat)} · ${hl(a.desc.slice(0, 90))}${a.desc.length > 90 ? '…' : ''}</small></div><span class="r">${a.repo}</span></a>`).join('')}</div>`).join('');
   }
 }
 
@@ -647,7 +738,21 @@ document.addEventListener('click', e => {
   const s = e.target.closest('[data-share]'); if (s) { const a = state.apps.find(x => x.repo === s.dataset.share); share(a.url, a.name); return; }
   const c = e.target.closest('.chip'); if (c) { state.cat = c.dataset.c; render(); }
 });
-$('#q').addEventListener('input', e => { state.q = e.target.value; render(); });
+function setQuery(v, focus) {
+  state.q = v; $('#q').value = v; render();
+  try { history.replaceState(null, '', v.trim() ? `#q=${encodeURIComponent(v.trim())}` : location.pathname); } catch {}
+  if (focus) $('#q').focus();
+}
+function revealResults() { // amène la liste des résultats sous la barre de recherche si elle est hors de vue
+  const r = $('#apps').getBoundingClientRect();
+  if (r.top < -40 || r.top > innerHeight * 0.55) scrollTo({ top: r.top + scrollY - 72, behavior: 'smooth' });
+}
+$('#q').addEventListener('input', e => { setQuery(e.target.value); clearTimeout(revealResults.t); if (state.q.trim()) revealResults.t = setTimeout(revealResults, 220); });
+$('#q').addEventListener('keydown', e => { if (e.key === 'Escape') { setQuery(''); e.target.blur(); } if (e.key === 'Enter') { const f = $('#list .card, #list .row'); if (f) { revealResults(); f.focus?.(); } } });
+document.addEventListener('click', e => {
+  if (e.target.closest('#qx, #qx2')) { setQuery('', true); return; }
+  const s = e.target.closest('[data-q]'); if (s) { setQuery(s.dataset.q, true); }
+});
 $('#sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
 $('#view').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; state.view = b.dataset.v; $$('#view button').forEach(x => x.classList.toggle('on', x === b)); render(); });
 $('#m-dev').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; $$('#m-dev button').forEach(x => x.classList.toggle('on', x === b)); $('#m-devbox').classList.toggle('phone', b.dataset.d === 'phone'); $('#m-bd').classList.remove('qrmode'); });
@@ -666,6 +771,7 @@ document.addEventListener('keydown', e => {
 });
 $('#yr').textContent = new Date().getFullYear();
 try { const t = localStorage.getItem('ahd.theme'); if (t) setTheme(t); } catch {}
+try { const qm = location.hash.match(/^#q=(.+)$/); if (qm) { $('#q').value = decodeURIComponent(qm[1]); state.q = $('#q').value; } } catch {}
 load().then(() => { const m = location.hash.match(/^#app=([\w.-]+)$/); if (m) openPreview(m[1]); });
 
 </script>
