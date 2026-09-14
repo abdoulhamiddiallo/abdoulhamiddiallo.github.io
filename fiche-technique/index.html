@@ -92,7 +92,7 @@ h2.sub{font-size:15px;color:#1f3864;margin:22px 0 10px;display:flex;align-items:
   <footer class="foot">Technical data sheet updated in September 2026.</footer>
 </main></div>
 <script>
-(function(){var q=new URLSearchParams(location.search).get('lang')||(location.hash==='#en'?'en':'')||localStorage.getItem('ft-lang')||'fr';if(q!=='en'&&q!=='fr')q='fr';document.documentElement.lang=q;localStorage.setItem('ft-lang',q);var L=document.querySelectorAll('.lang');for(var i=0;i<L.length;i++){L[i].hidden=L[i].getAttribute('data-lang')!==q;}document.title=q==='en'?"Technical Data Sheet · Abdoul Hamid Diallo":"Fiche technique · Abdoul Hamid Diallo";})();
+(function(){var q=new URLSearchParams(location.search).get('lang')||(location.hash==='#en'?'en':'')||'fr';if(q!=='en'&&q!=='fr')q='fr';document.documentElement.lang=q;localStorage.setItem('ft-lang',q);var L=document.querySelectorAll('.lang');for(var i=0;i<L.length;i++){L[i].hidden=L[i].getAttribute('data-lang')!==q;}document.title=q==='en'?"Technical Data Sheet · Abdoul Hamid Diallo":"Fiche technique · Abdoul Hamid Diallo";})();
 </script>
 </body>
 </html>
