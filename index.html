@@ -839,7 +839,7 @@ load().then(() => { const m = location.hash.match(/^#app=([\w.-]+)$/); if (m) op
 /* ===== Audience (GoatCounter, sans cookies) ===== */
 const GC = 'abdoulhamiddiallo', GCB = `https://${GC}.goatcounter.com`;
 const aud = { rows: [], sort: 'month', busy: false, t: 0 };
-const audPeriods = () => { const d = new Date(), z = n => String(n).padStart(2, '0'); return { today: `${d.getFullYear()}-${z(d.getMonth() + 1)}-${z(d.getDate())}`, week: 'week', month: 'month', total: '' }; };
+const audPeriods = () => { const d = new Date(), z = n => String(n).padStart(2, '0'); return { today: `${d.getFullYear()}-${z(d.getMonth() + 1)}-${z(d.getDate())}`, week: 'week', month: 'month', total: '2026-01-01' }; };
 async function gcCount(path, start) {
   const u = `${GCB}/counter/${encodeURIComponent(path)}.json` + (start ? `?start=${start}` : '');
   try { const r = await fetch(u); if (r.status === 404) return 0; if (!r.ok) throw new Error(r.status); const j = await r.json(); return parseInt(String(j.count).replace(/\D/g, ''), 10) || 0; }
@@ -852,7 +852,7 @@ async function audLoad() {
   const P = audPeriods();
   const list = [{ repo: '(catalogue)', name: 'Catalogue des applications', cat: 'Accueil', url: 'https://abdoulhamiddiallo.github.io/', shot: null }].concat(state.apps.filter(a => a.ok !== false));
   $('#aud-n').textContent = 'Chargement des compteurs…';
-  const tasks = []; list.forEach(a => { const p = new URL(a.url, location.href).pathname; ['today', 'week', 'month', 'total'].forEach(k => tasks.push(() => gcCount(p, P[k]))); });
+  const tasks = []; list.forEach(a => { const p = new URL(a.url, location.href).pathname.replace(/\/+$/, '') || '/'; ['today', 'week', 'month', 'total'].forEach(k => tasks.push(() => gcCount(p, P[k]))); });
   const res = await pool(tasks, 6);
   aud.rows = list.map((a, i) => ({ a, today: res[i * 4], week: res[i * 4 + 1], month: res[i * 4 + 2], total: res[i * 4 + 3] }));
   aud.t = Date.now(); aud.busy = false; audRender();
