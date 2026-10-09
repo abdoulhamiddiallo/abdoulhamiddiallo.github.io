@@ -277,6 +277,43 @@ footer .fava{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none
   .shot .over{opacity:1}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* audience */
+.aud-btn{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 13px;border-radius:10px;background:var(--acc);color:#fff;font-weight:600;font-size:13.5px;text-decoration:none;flex:none}
+.aud-btn:hover{background:var(--acc2)}
+@media (max-width:560px){.aud-btn span{display:none}.aud-btn{padding:0 11px}}
+.aud{position:fixed;inset:0;z-index:80;background:var(--bg);overflow-y:auto;display:none}
+.aud.on{display:block}
+.aud .wrap{padding-top:22px;padding-bottom:48px}
+.aud-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.aud-top h2{margin:0;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.025em}
+.aud-top p{margin:4px 0 0;color:var(--fg2);font-size:14px}
+.aud-x{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);background:var(--sf);border-radius:10px;padding:9px 14px;font-weight:600;font-size:14px}
+.aud-k{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:22px 0 18px}
+.aud-k div{background:var(--sf);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.aud-k b{display:block;font-family:var(--mono);font-size:clamp(22px,2.6vw,30px);letter-spacing:-.03em;font-weight:600}
+.aud-k span{color:var(--fg2);font-size:13px}
+.aud-k div:first-child{background:var(--acc);border-color:var(--acc);color:#fff}.aud-k div:first-child span{color:rgba(255,255,255,.8)}
+.aud-t{width:100%;border-collapse:separate;border-spacing:0;background:var(--sf);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);font-size:14px}
+.aud-t th{text-align:right;font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--fg3);font-weight:700;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--sf2);cursor:pointer;white-space:nowrap;user-select:none}
+.aud-t th:first-child,.aud-t td:first-child{text-align:left}
+.aud-t th.on{color:var(--acc)}.aud-t th.on::after{content:" ↓"}
+.aud-t td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.aud-t tr:last-child td{border-bottom:0}
+.aud-t tr:hover td{background:var(--sf2)}
+.aud-app{display:flex;align-items:center;gap:12px;font-family:var(--sans);min-width:0}
+.aud-app img,.aud-app .ph{width:64px;height:40px;border-radius:6px;object-fit:cover;flex:none;border:1px solid var(--line);background:var(--sf3)}
+.aud-app b{display:block;font-weight:650;font-size:14px;white-space:normal}
+.aud-app small{color:var(--fg3);font-size:12px}
+.aud-app a{text-decoration:none}.aud-app a:hover b{color:var(--acc)}
+.aud-bar{height:6px;border-radius:3px;background:var(--sf3);margin-top:6px;overflow:hidden;width:100%;min-width:60px}.aud-bar i{display:block;height:100%;background:var(--acc);border-radius:3px}
+.aud-rk{color:var(--fg3);font-size:12px;width:22px;display:inline-block}
+.aud-n{color:var(--fg3);font-size:12.5px;margin:12px 2px 0;line-height:1.5}
+.aud-cta{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;border-radius:10px;padding:10px 16px;font-weight:600;font-size:14px;text-decoration:none}
+.aud-msg{background:var(--acc-soft);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0 0 16px;font-size:14px}
+.aud-tw{overflow-x:auto;border-radius:14px}
+@media (max-width:760px){.aud-k{grid-template-columns:1fr 1fr}.aud-t .c-today,.aud-t .c-week{display:none}.aud-app img,.aud-app .ph{width:48px;height:30px}}
+@media (max-width:520px){.aud-app img,.aud-app .ph{display:none}.aud-t th,.aud-t td{padding:9px 8px}.aud-app b{font-size:13px}.aud-rk{width:16px}.aud-t th{font-size:10.5px;letter-spacing:.04em}}
 </style>
 </head>
 <body>
@@ -287,6 +324,7 @@ footer .fava{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none
   </a>
   <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input id="q" type="search" placeholder="Rechercher une application, un thème, un pays…" autocomplete="off" aria-label="Rechercher" spellcheck="false"><button type="button" class="clr" id="qx" title="Effacer la recherche" aria-label="Effacer la recherche"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6 6 18"/></svg></button><kbd>/</kbd></label>
+  <a class="aud-btn" id="aud-open" href="#audience" title="Voir l’audience de mes applications"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Audience</span></a>
   <button class="ibtn" id="share" title="Partager cette page" aria-label="Partager"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></button>
   <button class="ibtn" id="theme" title="Thème clair / sombre" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 1 0 9 9c0-.5 0-1-.1-1.4A5.5 5.5 0 0 1 13.4 3.1C13 3 12.5 3 12 3z"/></svg></button>
 </div></header>
@@ -368,6 +406,17 @@ footer .fava{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none
   </section>
 </main>
 
+
+<div class="aud" id="aud" role="dialog" aria-modal="true" aria-label="Audience des applications"><div class="wrap">
+  <div class="aud-top">
+    <div><h2>Audience de mes applications</h2><p>Visiteurs de chaque application, mesurés sans cookies par GoatCounter.</p></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="aud-cta" id="aud-dash" href="https://abdoulhamiddiallo.goatcounter.com" target="_blank" rel="noopener">Détail jour par jour <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M8 7h9v9"/></svg></a><button class="aud-x" id="aud-x" type="button">Fermer</button></div>
+  </div>
+  <div class="aud-k" id="aud-k"></div>
+  <div id="aud-msg"></div>
+  <div class="aud-tw"><table class="aud-t" id="aud-t"></table></div>
+  <p class="aud-n" id="aud-n"></p>
+</div></div>
 <footer><div class="wrap">
   <div class="fb"><img class="fava" src="data:image/webp;base64,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" alt="" width="40" height="40"><div><b>Abdoul Hamid Diallo · Applications de données</b><span>Des laboratoires interactifs construits pour explorer des décennies de chiffres, publiés en accès libre. Cette page se met à jour automatiquement à chaque nouvelle publication.</span></div></div>
   <div class="fr"><span class="live" id="live"><i></i><span>Synchronisé avec GitHub</span></span><span>© <span id="yr"></span> Abdoul Hamid Diallo · <a href="https://github.com/abdoulhamiddiallo" target="_blank" rel="noopener">GitHub</a></span></div>
@@ -786,6 +835,50 @@ try { const t = localStorage.getItem('ahd.theme'); if (t) setTheme(t); } catch {
 try { const qm = location.hash.match(/^#q=(.+)$/); if (qm) { $('#q').value = decodeURIComponent(qm[1]); state.q = $('#q').value; } } catch {}
 load().then(() => { const m = location.hash.match(/^#app=([\w.-]+)$/); if (m) openPreview(m[1]); });
 
+
+/* ===== Audience (GoatCounter, sans cookies) ===== */
+const GC = 'abdoulhamiddiallo', GCB = `https://${GC}.goatcounter.com`;
+const aud = { rows: [], sort: 'month', busy: false, t: 0 };
+const audPeriods = () => { const d = new Date(), z = n => String(n).padStart(2, '0'); return { today: `${d.getFullYear()}-${z(d.getMonth() + 1)}-${z(d.getDate())}`, week: 'week', month: 'month', total: '' }; };
+async function gcCount(path, start) {
+  const u = `${GCB}/counter/${encodeURIComponent(path)}.json` + (start ? `?start=${start}` : '');
+  try { const r = await fetch(u); if (r.status === 404) return 0; if (!r.ok) throw new Error(r.status); const j = await r.json(); return parseInt(String(j.count).replace(/\D/g, ''), 10) || 0; }
+  catch (e) { return null; }
+}
+async function pool(tasks, n) { const out = new Array(tasks.length); let i = 0; await Promise.all(Array.from({ length: n }, async () => { while (i < tasks.length) { const k = i++; out[k] = await tasks[k](); } })); return out; }
+const nf = n => n == null ? '–' : new Intl.NumberFormat('fr-FR').format(n);
+async function audLoad() {
+  if (aud.busy) return; aud.busy = true;
+  const P = audPeriods();
+  const list = [{ repo: '(catalogue)', name: 'Catalogue des applications', cat: 'Accueil', url: 'https://abdoulhamiddiallo.github.io/', shot: null }].concat(state.apps.filter(a => a.ok !== false));
+  $('#aud-n').textContent = 'Chargement des compteurs…';
+  const tasks = []; list.forEach(a => { const p = new URL(a.url, location.href).pathname; ['today', 'week', 'month', 'total'].forEach(k => tasks.push(() => gcCount(p, P[k]))); });
+  const res = await pool(tasks, 6);
+  aud.rows = list.map((a, i) => ({ a, today: res[i * 4], week: res[i * 4 + 1], month: res[i * 4 + 2], total: res[i * 4 + 3] }));
+  aud.t = Date.now(); aud.busy = false; audRender();
+}
+function audRender() {
+  const R = aud.rows, all = R.every(r => r.total == null);
+  const sum = k => R.reduce((s, r) => s + (r[k] || 0), 0);
+  $('#aud-k').innerHTML = [['today', 'visites aujourd’hui'], ['week', 'sur 7 jours'], ['month', 'sur 30 jours'], ['total', 'depuis le début']].map(([k, l]) => `<div><b>${all ? '–' : nf(sum(k))}</b><span>${l}</span></div>`).join('');
+  $('#aud-msg').innerHTML = all ? `<div class="aud-msg"><b>Compteurs pas encore disponibles.</b> Les visites apparaissent ici dès que le compte GoatCounter « ${GC} » est actif et que l’option « Allow adding visitor counts on your website » est cochée. Les premières visites peuvent mettre jusqu’à quatre heures à s’afficher.</div>` : '';
+  const rows = R.slice().sort((x, y) => (y[aud.sort] || 0) - (x[aud.sort] || 0) || x.a.name.localeCompare(y.a.name, 'fr'));
+  const mx = Math.max(1, ...rows.map(r => r[aud.sort] || 0));
+  const H = [['app', 'Application'], ['today', 'Aujourd’hui', 'c-today'], ['week', '7 jours', 'c-week'], ['month', '30 jours'], ['total', 'Total']];
+  $('#aud-t').innerHTML = `<thead><tr>${H.map(([k, l, c]) => `<th data-k="${k}" class="${c || ''}${aud.sort === k ? ' on' : ''}">${l}</th>`).join('')}</tr></thead><tbody>` + rows.map((r, i) => {
+    const a = r.a, img = a.shot ? `<img src="${a.shot}" alt="" loading="lazy">` : `<span class="ph"></span>`;
+    return `<tr><td><div class="aud-app"><span class="aud-rk">${i + 1}</span>${img}<div style="min-width:0;flex:1"><a href="${a.url}" target="_blank" rel="noopener"><b>${a.name}</b></a><small>${a.cat || ''}</small><div class="aud-bar"><i style="width:${((r[aud.sort] || 0) / mx * 100).toFixed(1)}%"></i></div></div></div></td><td class="c-today">${nf(r.today)}</td><td class="c-week">${nf(r.week)}</td><td>${nf(r.month)}</td><td><b>${nf(r.total)}</b></td></tr>`;
+  }).join('') + '</tbody>';
+  $$('#aud-t th').forEach(th => th.onclick = () => { if (th.dataset.k === 'app') return; aud.sort = th.dataset.k; audRender(); });
+  $('#aud-n').textContent = `Mis à jour à ${new Date(aud.t).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}. Un visiteur est compté une fois par page et par jour ; les chiffres peuvent avoir jusqu’à quatre heures de retard. Le détail jour par jour, les pays, les appareils et la provenance des visites sont sur le tableau de bord GoatCounter.`;
+}
+function audOpen() { $('#aud').classList.add('on'); document.body.style.overflow = 'hidden'; const go = () => state.apps.length ? audLoad() : setTimeout(go, 300); if (!aud.t || Date.now() - aud.t > 5 * 60e3) go(); else audRender(); setTimeout(() => $('#aud-x').focus(), 50); }
+function audClose() { $('#aud').classList.remove('on'); document.body.style.overflow = ''; if (location.hash === '#audience') history.replaceState(null, '', location.pathname + location.search); }
+$('#aud-x').addEventListener('click', audClose);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('#aud').classList.contains('on')) audClose(); });
+const audHash = () => { if (location.hash === '#audience') audOpen(); };
+window.addEventListener('hashchange', audHash); audHash();
 </script>
+<script data-goatcounter="https://abdoulhamiddiallo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
